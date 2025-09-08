@@ -1221,6 +1221,21 @@ public enum Mixins implements IMixins {
             .setApplyIf(() -> TweaksConfig.disableAidSpawnByXUSpikes)
             .addRequiredMod(TargetedMod.EXTRA_UTILITIES)
             .setPhase(Phase.LATE)),
+    FIX_EXTRA_UTILITIES_OVERCHANT(new MixinBuilder("Fix Exu spikes losing overchant tags when being placed on the ground")
+            .addCommonMixins("extrautilities.MixinBlockSpike_Overchant")
+            .setApplyIf(() -> FixesConfig.fixExtraUtilitiesOverchant)
+            .addRequiredMod(TargetedMod.EXTRA_UTILITIES)
+            .setPhase(Phase.LATE)),
+    FIX_EXTRA_UTILITIES_REPAIR_COST(new MixinBuilder("Fix Exu spikes resetting anvil repair cost when being placed on the ground" )
+            .addCommonMixins("extrautilities.MixinBlockSpike_RepairCost")
+            .setApplyIf(() -> FixesConfig.fixExtraUtilitiesRepairCost)
+            .addRequiredMod(TargetedMod.EXTRA_UTILITIES)
+            .setPhase(Phase.LATE)),
+    EXTRA_UTILITIES_CLEANUP_NBT(new MixinBuilder("Ensures NBT Tags injected in Exu spikes by FIX_EXTRA_UTILITIES_OVERCHANT or FIX_EXTRA_UTILITIES_REPAIR_COST are cleaned up if either fix is disabled")
+            .addCommonMixins("extrautilities.MixinBlockSpike_CleanupNBT")
+            .setApplyIf(() -> !FixesConfig.fixExtraUtilitiesOverchant || !FixesConfig.fixExtraUtilitiesRepairCost)
+            .addRequiredMod(TargetedMod.EXTRA_UTILITIES)
+            .setPhase(Phase.LATE)),
     FIX_EXTRA_UTILITIES_TRANSPARENT_ITEM_RENDER(new MixinBuilder("Fix extra utilities item rendering for transparent items")
             .addClientMixins("extrautilities.MixinTransparentItemRender")
             .setApplyIf(() -> FixesConfig.fixExtraUtilitiesItemRendering)
