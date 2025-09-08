@@ -488,6 +488,14 @@ public class FixesConfig {
     @Config.DefaultBoolean(true)
     public static boolean fixExtraUtilitiesUnEnchanting;
 
+    @Config.Comment("Fix Extra Utilities spikes resetting anvil repair cost when placed on the ground")
+    @Config.DefaultBoolean(true)
+    public static boolean fixExtraUtilitiesRepairCost;
+
+    @Config.Comment("Fix Extra Utilities spikes losing overchant tag (from Thaumic Bases) when placed on the ground")
+    @Config.DefaultBoolean(true)
+    public static boolean fixExtraUtilitiesOverchant;
+
     @Config.Comment("Remove rain from the Last Millenium (Extra Utilities)")
     @Config.DefaultBoolean(true)
     public static boolean fixExtraUtilitiesLastMilleniumRain;
